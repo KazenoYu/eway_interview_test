@@ -110,6 +110,7 @@
               placeholder="placeholder text"
               @change="validateStore"
               @blur="validateStore"
+              :class="{ 'is-invalid': storeErrorMsg }"
             />
             <datalist id="storeList">
               <option
@@ -176,6 +177,7 @@
               placeholder="placeholder text"
               @change="validatePayment"
               @blur="validatePayment"
+              :class="{ 'is-invalid': paymentErrorMsg }"
               required
             />
             <datalist id="payment">
