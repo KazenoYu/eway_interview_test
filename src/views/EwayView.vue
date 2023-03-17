@@ -108,7 +108,6 @@
               list="storeList"
               v-model="store"
               placeholder="placeholder text"
-              @change="validateStore"
               @blur="validateStore"
               :class="{ 'is-invalid': storeErrorMsg }"
             />
@@ -129,7 +128,6 @@
               type="text"
               v-model="name"
               placeholder="placeholder text"
-              @change="validateName"
               @blur="validateName"
               :class="{ 'is-invalid': nameErrorMsg }"
               required
@@ -144,7 +142,6 @@
               type="text"
               v-model="phoneNumber"
               placeholder="placeholder text"
-              @change="validatePhoneNumber"
               @blur="validatePhoneNumber"
               :class="{ 'is-invalid': phoneErrorMsg }"
               required
@@ -159,7 +156,6 @@
               type="text"
               v-model="money"
               placeholder="placeholder text"
-              @change="validateAmount"
               @blur="validateAmount"
               :class="{ 'is-invalid': moneyErrorMsg }"
               required
@@ -175,7 +171,6 @@
               list="payment"
               v-model="paymentInput"
               placeholder="placeholder text"
-              @change="validatePayment"
               @blur="validatePayment"
               :class="{ 'is-invalid': paymentErrorMsg }"
               required
