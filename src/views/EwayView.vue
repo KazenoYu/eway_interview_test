@@ -24,7 +24,16 @@
             class="paddle"
           />
         </div>
-        <div class="bubnle"></div>
+        <img
+          src="@/assets/images/icon/pop_2.svg"
+          alt="bubble_2"
+          class="bubble_2"
+        />
+        <img
+          src="@/assets/images/icon/pop_1.svg"
+          alt="bubble_1"
+          class="bubble_1"
+        />
         <div>
           <div class="header_article_title">
             <h3>
@@ -99,6 +108,7 @@
               list="storeList"
               v-model="store"
               placeholder="placeholder text"
+              @change="validateStore"
               @blur="validateStore"
             />
             <datalist id="storeList">
@@ -118,6 +128,7 @@
               type="text"
               v-model="name"
               placeholder="placeholder text"
+              @change="validateName"
               @blur="validateName"
               :class="{ 'is-invalid': nameErrorMsg }"
               required
@@ -132,6 +143,7 @@
               type="text"
               v-model="phoneNumber"
               placeholder="placeholder text"
+              @change="validatePhoneNumber"
               @blur="validatePhoneNumber"
               :class="{ 'is-invalid': phoneErrorMsg }"
               required
@@ -146,6 +158,7 @@
               type="text"
               v-model="money"
               placeholder="placeholder text"
+              @change="validateAmount"
               @blur="validateAmount"
               :class="{ 'is-invalid': moneyErrorMsg }"
               required
@@ -161,6 +174,7 @@
               list="payment"
               v-model="paymentInput"
               placeholder="placeholder text"
+              @change="validatePayment"
               @blur="validatePayment"
               required
             />
@@ -176,10 +190,26 @@
             </span>
           </div>
         </div>
-        <button type="submit" class="button_submit" @click.prevent="submitForm">
+        <button
+          v-if="sumbit"
+          type="submit"
+          :class="submitClass"
+          @click.prevent="submitForm"
+          :disabled="isDisabled"
+        >
           submit
         </button>
-        <span>{{ submitMsg }}</span>
+        <button v-if="submitSuccess" class="button_submit_success">
+          <img src="@/assets/images/button/Vector-1.svg" alt="success" />
+          success
+        </button>
+        <button v-if="submitFail" class="button_submit_failure">
+          <img src="@/assets/images/button/Vector.svg" alt="fail" />
+          failure
+        </button>
+        <span v-if="submitFail" class="submit_fail_errorMsg">
+          This person does not exist
+        </span>
       </form>
       <div class="main_gift">
         <div class="gift_container">
@@ -271,7 +301,6 @@ export default {
       phoneErrorMsg: "",
       moneyErrorMsg: "",
       paymentErrorMsg: "",
-      submitMsg: "",
       giftList: [
         { score: "A", number: "ONE", name: "dehumidifier" },
         { score: "B", number: "ONE", name: "range hood" },
@@ -282,9 +311,34 @@ export default {
         { score: "G", number: "FIVE", name: "vacuum cleaner" },
         { score: "H", number: "TEN", name: "rice cooker" },
       ],
+      sumbit: true,
       submitSuccess: false,
       submitFail: false,
     };
+  },
+  computed: {
+    isDisabled() {
+      if (
+        !this.store ||
+        !this.name ||
+        !this.phoneNumber ||
+        !this.money ||
+        !this.paymentInput
+      ) {
+        return true;
+      } else return false;
+    },
+    submitClass() {
+      if (
+        !this.store ||
+        !this.name ||
+        !this.phoneNumber ||
+        !this.money ||
+        !this.paymentInput
+      ) {
+        return "button_submit_disabled";
+      } else return "button_submit";
+    },
   },
   methods: {
     scrollToForm() {
@@ -321,7 +375,7 @@ export default {
       }
     },
     validateAmount() {
-      const amountReg = /^(1-9)[0-9]+$/;
+      const amountReg = /^[1-9][0-9]+$/;
       if (!this.money) {
         this.moneyErrorMsg = "required";
       } else if (!amountReg.test(this.money.trim())) {
@@ -342,19 +396,21 @@ export default {
       this.validateName();
       this.validatePhoneNumber();
       this.validateAmount();
+      this.validatePayment();
       if (
         !this.storeErrorMsg &&
         !this.nameErrorMsg &&
-        !this.emailError &&
-        !this.passwordError &&
+        !this.phoneErrorMsg &&
+        !this.moneyErrorMsg &&
         !this.paymentErrorMsg
       ) {
-        alert("表單驗證通過，提交成功！");
+        this.sumbit = false;
         this.submitSuccess = true;
-        // 在這裡可以進一步處理表單提交的邏輯
+        this.submitClass = "button_submit_success";
       } else {
-        alert("請填寫內容");
+        this.sumbit = false;
         this.submitFail = true;
+        this.submitClass = "button_submit_failure";
       }
     },
   },
@@ -429,9 +485,59 @@ $general-prizes: #a0bcc8;
     font-weight: 700;
     letter-spacing: 0.4rem;
     box-shadow: 0px 0px 20px rgba(250, 163, 163, 0.91);
+    cursor: pointer;
     a {
       color: inherit;
       text-decoration: none;
+    }
+    .button_form:before {
+      content: "";
+      background: #3f3982;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .button_form:after {
+      content: "";
+      background: linear-gradient(
+        124deg,
+        #efdbc8,
+        #e9c87f,
+        #b2e1ea,
+        #90cae5,
+        #f5caf4,
+        #dfc9f9
+      );
+      background-size: auto;
+      background-size: 400%;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      border-radius: 10px;
+      filter: blur(5px);
+      opacity: 0;
+      position: absolute;
+      left: -2px;
+      top: -2px;
+      z-index: -2;
+      transition: all 0.3s ease-in-out;
+      animation: move 20s linear infinite;
+    }
+    .button_form:hover:after {
+      opacity: 1;
+    }
+    @keyframes move {
+      0% {
+        background-position: 0 0;
+      }
+      50% {
+        background-position: 400% 0;
+      }
+      100% {
+        background-position: 0 0;
+      }
     }
   }
 
@@ -480,9 +586,8 @@ $general-prizes: #a0bcc8;
         left: 18px;
         top: 10px;
         transform-origin: bottom left; /* 旋轉中心為左下角 */
-        animation-name: rowing;
-        animation-duration: 2.5s;
-        animation-timing-function: ease-in-out;
+        animation: rowing 3s ease-in-out;
+        animation-delay: 0.5s;
         animation-iteration-count: infinite;
       }
       @keyframes rowing {
@@ -497,19 +602,41 @@ $general-prizes: #a0bcc8;
         }
       }
     }
-    .bubble {
+    .bubble_1 {
+      position: absolute;
+      right: -16px;
+      top: -75px;
+      animation: bubble 3s ease-in-out;
+      animation-delay: 0.5s;
+      animation-iteration-count: infinite; /* 無限循環播放 */
+    }
+    @keyframes bubble {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    .bubble_2 {
+      position: absolute;
+      right: 0;
+      top: -50px;
+      animation: bubble 3s ease-in-out;
+      animation-iteration-count: infinite; /* 無限循環播放 */
+
       @keyframes bubble {
         0% {
-          opacity: 0; /* 泡泡的初始不透明度 */
-          bottom: -10px; /* 泡泡的初始垂直位置 */
+          opacity: 0;
         }
         50% {
-          opacity: 1; /* 泡泡的中間不透明度 */
-          bottom: 50px; /* 泡泡的中間垂直位置 */
+          opacity: 1;
         }
         100% {
-          opacity: 0; /* 泡泡的結束不透明度 */
-          bottom: 110px; /* 泡泡的結束垂直位置 */
+          opacity: 0;
         }
       }
     }
@@ -549,12 +676,17 @@ $general-prizes: #a0bcc8;
 
   height: 95px;
   .wave1 {
-    height: 95px;
+    height: 110px;
     background: url("@/assets/images/background/wave.svg");
-    background-size: 100% 100%;
-    background-repeat: repeat;
-    @media only screen and (max-width: $mid-width) {
-      height: 55.5px;
+    background-repeat: repeat-x;
+    animation: wave 10s linear infinite;
+    @keyframes wave {
+      0% {
+        background-position: 100% 0;
+      }
+      100% {
+        background-position: 0 0;
+      }
     }
     // position: absolute;
     // bottom: 0px;
@@ -603,7 +735,7 @@ $general-prizes: #a0bcc8;
       margin: 80px 0 42px 0;
       padding: 40px 20px;
       width: 808px;
-      height: 595px;
+      height: 555px;
       background-color: #ffffff;
       border: 1px solid $primary-brown;
       border-radius: 16px;
@@ -619,7 +751,7 @@ $general-prizes: #a0bcc8;
 
       div {
         padding: 8px 16px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
       label {
         font-size: 16px;
@@ -642,7 +774,7 @@ $general-prizes: #a0bcc8;
         }
         @media only screen and (max-width: $mid-width) {
           width: 294px;
-          height: 41px;
+          height: 25px;
         }
       }
       input:focus {
@@ -670,6 +802,89 @@ $general-prizes: #a0bcc8;
       font-size: 18px;
       font-weight: 700;
       letter-spacing: 0.4rem;
+      box-shadow: 0px 4px 10px rgba(40, 35, 35, 0.35),
+        0px -4px 10px rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      animation: buttonScale 1.5s ease-in-out;
+      animation-iteration-count: infinite; /* 無限循環播放 */
+      @keyframes buttonScale {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    }
+    .button_submit_disabled {
+      height: 57px;
+      width: 200px;
+      background-color: #d3a995;
+      padding: 16px 20px;
+      margin-bottom: 56px;
+      border: 0;
+      border-radius: 50px;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.4rem;
+      box-shadow: 0px 4px 10px rgba(40, 35, 35, 0.35),
+        0px -4px 10px rgba(255, 255, 255, 0.9);
+      cursor: not-allowed;
+    }
+    .button_submit_success {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 57px;
+      width: 200px;
+      background-color: $primary-brown;
+      padding: 16px 20px;
+      margin-bottom: 56px;
+      border: 0;
+      border-radius: 50px;
+      color: #e6ffb1;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      box-shadow: 0px 4px 10px rgba(40, 35, 35, 0.35),
+        0px -4px 10px rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      img {
+        margin-right: 16px;
+      }
+    }
+    .button_submit_failure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 57px;
+      width: 200px;
+      background-color: $primary-brown;
+      padding: 16px 20px;
+      margin-bottom: 56px;
+      border: 0;
+      border-radius: 50px;
+      color: #ffe3e3;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      box-shadow: 0px 4px 10px rgba(40, 35, 35, 0.35),
+        0px -4px 10px rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      img {
+        margin-right: 16px;
+      }
+    }
+    .submit_fail_errorMsg {
+      position: absolute;
+      font-weight: 400;
+      font-size: 14px;
+      bottom: 24px;
+      color: $form-error;
     }
   }
   .main_gift {
@@ -704,6 +919,9 @@ $general-prizes: #a0bcc8;
         box-shadow: 0px 8px 0px #edeef0;
         border-radius: 20px;
         margin: 10px;
+        @media only screen and (max-width: $mid-width) {
+          margin: 15px;
+        }
         .medal_top_prizes {
           position: absolute;
           top: -26px;
