@@ -4,5 +4,6 @@ module.exports = defineConfig({
 });
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/ewill_test/" : "/",
+  publicPath:
+    process.env.NODE_ENV === "production" ? "/eway_interview_test/" : "/",
 };

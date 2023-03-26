@@ -553,7 +553,7 @@ $general-prizes: #a0bcc8;
       width: 720px;
     }
     @media only screen and (max-width: $mid-width) {
-      width: 366px;
+      width: 43vh;
       height: 489px;
       margin-bottom: 48px;
     }
@@ -742,7 +742,7 @@ $general-prizes: #a0bcc8;
         width: 720px;
       }
       @media only screen and (max-width: $mid-width) {
-        width: 366px;
+        width: 40vh;
         height: 575px;
       }
 
@@ -770,7 +770,8 @@ $general-prizes: #a0bcc8;
           width: 648px;
         }
         @media only screen and (max-width: $mid-width) {
-          width: 294px;
+          // RWD min smooth
+          width: 34vh;
           height: 25px;
         }
       }

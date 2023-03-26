@@ -1,5 +1,6 @@
 {
-  "name": "ewill_test",
+  "name": "eway_interview_test",
+  "homepage": "https://KazenoYu.github.io/eway_interview_test",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -51,6 +52,5 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "homepage": "https://KazenoYu.github.io/eway_interview_test"
+  ]
 }
