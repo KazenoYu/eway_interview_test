@@ -98,7 +98,7 @@
         </div>
 
         <div class="form_area">
-          <div>
+          <div class="input_div">
             <label
               >store
               <span>*</span>
@@ -122,7 +122,7 @@
               {{ storeErrorMsg }}
             </span>
           </div>
-          <div>
+          <div class="input_div">
             <label>name<span>*</span></label>
             <input
               type="text"
@@ -136,7 +136,7 @@
               {{ nameErrorMsg }}
             </span>
           </div>
-          <div>
+          <div class="input_div">
             <label>phone<span>*</span></label>
             <input
               type="text"
@@ -150,7 +150,7 @@
               {{ phoneErrorMsg }}
             </span>
           </div>
-          <div>
+          <div class="input_div">
             <label>Amount of consumption<span>*</span></label>
             <input
               type="text"
@@ -164,7 +164,7 @@
               {{ moneyErrorMsg }}
             </span>
           </div>
-          <div>
+          <div class="input_div">
             <label>payment<span>*</span></label>
             <input
               type="text"
@@ -442,20 +442,16 @@ $general-prizes: #a0bcc8;
 }
 .header_sea {
   @include flex-center;
-  height: 634px;
   background: url("@/assets/images/background/waveLine.svg");
   background-repeat: no-repeat;
   background-color: $primary-blue;
-  @media only screen and (max-width: $mid-width) {
-    height: 793px;
-  }
 
   .header_title {
     @include flex-center;
     font-weight: 700;
     margin: 60px 0 32px 0;
     h1 {
-      font-size: 32px;
+      font-size: 2rem;
       line-height: 40px;
       letter-spacing: 0.2em;
       text-align: left;
@@ -463,7 +459,7 @@ $general-prizes: #a0bcc8;
     }
     h2 {
       font-family: Noto Sans TC;
-      font-size: 28px;
+      font-size: 1.75rem;
       line-height: 35px;
       letter-spacing: 0.2em;
       text-align: center;
@@ -471,8 +467,7 @@ $general-prizes: #a0bcc8;
     }
   }
   .button_form {
-    height: 57px;
-    width: 200px;
+    width: 12.5rem;
     padding: 16px 20px;
     background-color: $primary-brown;
     border: 0;
@@ -545,16 +540,14 @@ $general-prizes: #a0bcc8;
     border-radius: 20px;
     position: relative;
     width: 808px;
-    height: 322px;
 
     margin: 32px 0 52px 0;
 
     @media only screen and (max-width: $large-width) {
-      width: 720px;
+      width: 45rem;
     }
     @media only screen and (max-width: $mid-width) {
-      width: 43vh;
-      height: 489px;
+      width: 80vw;
       margin-bottom: 48px;
     }
     .header_article_title {
@@ -668,10 +661,7 @@ $general-prizes: #a0bcc8;
 }
 
 .sea_wave {
-  // display: flex;
   position: relative;
-
-  height: 95px;
   .wave1 {
     height: 110px;
     background: url("@/assets/images/background/wave.svg");
@@ -685,16 +675,7 @@ $general-prizes: #a0bcc8;
         background-position: 0 0;
       }
     }
-    // position: absolute;
-    // bottom: 0px;
   }
-  // .wave2 {
-  //   height: 95px;
-  //   background: url("@/assets/images/background/wave.svg");
-  //   background-size: 100% 100%;
-  //   position: absolute;
-  //   top: 0;
-  // }
 }
 
 .main_sand {
@@ -708,7 +689,6 @@ $general-prizes: #a0bcc8;
       position: absolute;
       top: 56px;
       width: 83px;
-      height: 23px;
       background: #ffffff;
       border: 2px solid $primary-brown;
       box-shadow: 0px 1px 10px rgba(73, 72, 72, 0.25);
@@ -732,18 +712,18 @@ $general-prizes: #a0bcc8;
       margin: 80px 0 42px 0;
       padding: 40px 20px;
       width: 808px;
-      height: 555px;
       background-color: #ffffff;
       border: 1px solid $primary-brown;
       border-radius: 16px;
       box-shadow: 0px 1px 20px rgba(73, 72, 72, 0.25);
-
       @media only screen and (max-width: $large-width) {
-        width: 720px;
+        width: 45rem;
       }
       @media only screen and (max-width: $mid-width) {
-        width: 40vh;
-        height: 575px;
+        width: 80vw;
+      }
+      @media only screen and (max-width: 375px) {
+        width: 66vw;
       }
 
       div {
@@ -759,20 +739,30 @@ $general-prizes: #a0bcc8;
           margin-left: 4px;
         }
       }
+      .input_div {
+        display: flex;
+        flex-direction: column;
+      }
       input {
         border: 1px solid $primary-blue;
         border-radius: 16px;
         margin-top: 4px;
         padding: 8px 16px;
-        width: 736px;
+        width: 46rem;
         height: 20px;
+        outline: none;
         @media only screen and (max-width: $large-width) {
-          width: 648px;
+          width: 40.5rem;
         }
         @media only screen and (max-width: $mid-width) {
-          // RWD min smooth
-          width: 34vh;
+          width: 70vw;
           height: 25px;
+        }
+        @media only screen and (max-width: $small-width) {
+          width: 64vw;
+        }
+        @media only screen and (max-width: 375px) {
+          width: 50vw;
         }
       }
       input:focus {
@@ -789,8 +779,7 @@ $general-prizes: #a0bcc8;
       }
     }
     .button_submit {
-      height: 57px;
-      width: 200px;
+      width: 12.5rem;
       background-color: $primary-brown;
       padding: 16px 20px;
       margin-bottom: 56px;
@@ -818,8 +807,7 @@ $general-prizes: #a0bcc8;
       }
     }
     .button_submit_disabled {
-      height: 57px;
-      width: 200px;
+      width: 12.5rem;
       background-color: #d3a995;
       padding: 16px 20px;
       margin-bottom: 56px;
@@ -837,8 +825,7 @@ $general-prizes: #a0bcc8;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 57px;
-      width: 200px;
+      width: 12.5rem;
       background-color: $primary-brown;
       padding: 16px 20px;
       margin-bottom: 56px;
@@ -859,8 +846,7 @@ $general-prizes: #a0bcc8;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 57px;
-      width: 200px;
+      width: 12.5rem;
       background-color: $primary-brown;
       padding: 16px 20px;
       margin-bottom: 56px;
@@ -887,39 +873,47 @@ $general-prizes: #a0bcc8;
   }
   .main_gift {
     width: 100vw;
-    height: 531px;
     background: url("@/assets/images/background/sand.svg") center;
     z-index: 100;
     @include flex-center;
     @media only screen and (max-width: $mid-width) {
       height: 684px;
     }
+    @media only screen and (max-width: 280px) {
+      height: 1110px;
+    }
     .gift_container {
-      width: 600px;
-      height: 451px;
+      width: 37.5rem;
       display: flex;
       align-items: center;
       flex-direction: row;
       flex-wrap: wrap;
       padding: 42px 0;
       @media only screen and (max-width: $mid-width) {
-        width: 400px;
+        width: 23.25rem;
         height: 604px;
+      }
+      @media only screen and (max-width: 280px) {
+        width: 0;
         flex-direction: column;
+        flex-wrap: nowrap;
       }
       .card {
         position: relative;
-        width: 178px;
-        height: 112px;
+        width: 11.125rem;
+        height: 7rem;
         left: 0px;
         top: 0px;
         background: #ffffff;
         box-shadow: 0px 8px 0px #edeef0;
         border-radius: 20px;
-        margin: 10px;
+        margin: 15px 10px;
         @media only screen and (max-width: $mid-width) {
-          margin: 15px;
+          margin: 15px 5px;
+          width: 10.75rem;
+          height: 6.75rem;
         }
+
         .medal_top_prizes {
           position: absolute;
           top: -26px;
@@ -931,6 +925,12 @@ $general-prizes: #a0bcc8;
           p {
             padding-top: 5px;
             text-align: center;
+          }
+          @media only screen and (max-width: $mid-width) {
+            width: 64px;
+            height: 76px;
+            top: -23px;
+            left: 56px;
           }
         }
         .medal_default {
@@ -945,11 +945,16 @@ $general-prizes: #a0bcc8;
             padding-top: 10px;
             text-align: center;
           }
+          @media only screen and (max-width: $mid-width) {
+            width: 64px;
+            height: 76px;
+            top: -28px;
+            left: 56px;
+          }
         }
         .gift_number_top {
           position: absolute;
           width: 25px;
-          height: 17px;
           left: 125px;
           top: 18px;
           text-align: center;
@@ -959,11 +964,13 @@ $general-prizes: #a0bcc8;
           border-radius: 50px;
           padding: 3px 10px;
           color: $top-prizes;
+          @media only screen and (max-width: $mid-width) {
+            left: 121px;
+          }
         }
         .gift_number_default {
           position: absolute;
           width: 25px;
-          height: 17px;
           left: 125px;
           top: 18px;
           text-align: center;
@@ -973,6 +980,9 @@ $general-prizes: #a0bcc8;
           border-radius: 50px;
           padding: 3px 10px;
           color: $general-prizes;
+          @media only screen and (max-width: $mid-width) {
+            left: 121px;
+          }
         }
         .gift_name_top {
           font-weight: 700;
@@ -1028,14 +1038,21 @@ $general-prizes: #a0bcc8;
   height: 677px;
   border-radius: 50px 50px 0px 0px;
   padding-top: 40px;
+  img {
+    @media only screen and (max-width: 280px) {
+      width: 100vw;
+    }
+  }
   .market_slogan {
     color: #ffffff;
     width: 303px;
-    height: 80px;
     font-size: 20px;
     line-height: 200%;
     text-align: center;
     letter-spacing: 0.2em;
+    @media only screen and (max-width: 280px) {
+      width: 284px;
+    }
   }
 }
 </style>

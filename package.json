@@ -1,8 +1,8 @@
 {
   "name": "eway_interview_test",
-  "homepage": "https://KazenoYu.github.io/eway_interview_test",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://KazenoYu.github.io/eway_interview_test",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
