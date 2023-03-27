@@ -544,7 +544,7 @@ $general-prizes: #a0bcc8;
     margin: 32px 0 52px 0;
 
     @media only screen and (max-width: $large-width) {
-      width: 45rem;
+      width: 55vw;
     }
     @media only screen and (max-width: $mid-width) {
       width: 80vw;
@@ -717,7 +717,7 @@ $general-prizes: #a0bcc8;
       border-radius: 16px;
       box-shadow: 0px 1px 20px rgba(73, 72, 72, 0.25);
       @media only screen and (max-width: $large-width) {
-        width: 45rem;
+        width: 55vw;
       }
       @media only screen and (max-width: $mid-width) {
         width: 80vw;
@@ -752,7 +752,7 @@ $general-prizes: #a0bcc8;
         height: 20px;
         outline: none;
         @media only screen and (max-width: $large-width) {
-          width: 40.5rem;
+          width: 50vw;
         }
         @media only screen and (max-width: $mid-width) {
           width: 70vw;
@@ -763,6 +763,7 @@ $general-prizes: #a0bcc8;
         }
         @media only screen and (max-width: 375px) {
           width: 50vw;
+          height: auto;
         }
       }
       input:focus {
@@ -893,6 +894,9 @@ $general-prizes: #a0bcc8;
         width: 23.25rem;
         height: 604px;
       }
+      @media only screen and (max-width: 375px) {
+        width: 22.75rem;
+      }
       @media only screen and (max-width: 280px) {
         width: 0;
         flex-direction: column;
@@ -931,6 +935,9 @@ $general-prizes: #a0bcc8;
             height: 76px;
             top: -23px;
             left: 56px;
+            p {
+              padding-top: 4px;
+            }
           }
         }
         .medal_default {
@@ -950,6 +957,9 @@ $general-prizes: #a0bcc8;
             height: 76px;
             top: -28px;
             left: 56px;
+            p {
+              padding-top: 4px;
+            }
           }
         }
         .gift_number_top {
