@@ -958,7 +958,7 @@ $general-prizes: #a0bcc8;
             top: -28px;
             left: 56px;
             p {
-              padding-top: 4px;
+              padding-top: 7px;
             }
           }
         }
