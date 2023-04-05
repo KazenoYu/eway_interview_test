@@ -111,7 +111,7 @@
               @blur="validateStore"
               :class="{ 'is-invalid': storeErrorMsg }"
             />
-            <datalist id="storeList">
+            <datalist id="storeList" class="select">
               <option
                 v-for="(option, index) in storeList"
                 :key="index"
@@ -153,7 +153,7 @@
           <div class="input_div">
             <label>Amount of consumption<span>*</span></label>
             <input
-              type="text"
+              type="number"
               v-model="money"
               placeholder="placeholder text"
               @blur="validateAmount"
@@ -175,7 +175,7 @@
               :class="{ 'is-invalid': paymentErrorMsg }"
               required
             />
-            <datalist id="payment">
+            <datalist id="payment" class="select">
               <option
                 v-for="(option, index) in payment"
                 :key="index"
@@ -739,6 +739,17 @@ $general-prizes: #a0bcc8;
           margin-left: 4px;
         }
       }
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
       .input_div {
         display: flex;
         flex-direction: column;
@@ -778,6 +789,12 @@ $general-prizes: #a0bcc8;
         font-weight: 400;
         font-size: 12px;
       }
+    }
+    .select {
+      background: none;
+      border: none;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
     .button_submit {
       width: 12.5rem;
